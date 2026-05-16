@@ -5,9 +5,9 @@
 // ============================================================
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'projet_qcm');
+define('DB_NAME', 'project_qcm');
 define('DB_USER', 'root');       // ← à adapter selon votre config XAMPP/WAMP
-define('DB_PASS', '');           // ← idem
+define('DB_PASS', 'root');          // ← idem
 
 try {
     $pdo = new PDO(
