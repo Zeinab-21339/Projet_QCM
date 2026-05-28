@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <nav class="the_legacy_house-nav"><div class="nav-inner"><a href="index.php" class="nav-brand"><span>The Legacy</span> QCM</a><div class="nav-links"><a href="register.php" class="btn-publish btn">Inscription</a></div></div></nav>
+  <nav class="the_legacy_house-nav"><div class="nav-inner"><a href="index.php" class="nav-brand"><span>The Legacy</span> QCM</a><div class="nav-links"><a href="register.php" class="btn-publish btn">Inscription</a><a href="index.php"><i class="bi bi-house"></i> Accueil</a></div></div></nav>
 
   <div class="page-wrap fade-up">
     <form class="form-card" action="login.php" method="post">

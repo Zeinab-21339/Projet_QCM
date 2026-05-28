@@ -196,45 +196,6 @@ $_SESSION['quiz_questions'] = $questions;
         }
       }
     });
-
-    // Anti-triche : timer qui soumet automatiquement
-    let remaining = <?= count($questions) ?> * 60;
-    const timerEl = document.getElementById('timer');
-    const timerInterval = setInterval(() => {
-      remaining = Math.max(0, remaining - 1);
-      const m = String(Math.floor(remaining / 60)).padStart(2, '0');
-      const s = String(remaining % 60).padStart(2, '0');
-      timerEl.textContent = `${m}:${s}`;
-      if (remaining === 0) {
-        clearInterval(timerInterval);
-        alert('Temps écoulé ! Vos réponses sont envoyées automatiquement.');
-        document.getElementById('quizForm').submit();
-      }
-    }, 1000);
-
-    // Anti-triche : changement d'onglet
-    let warnings = 0;
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        warnings++;
-        document.getElementById('warningCount').textContent = warnings;
-        if (warnings >= 3) {
-          alert('Trop de changements d\'onglet détectés. La tentative est annulée.');
-          window.location.href = 'index.php';
-        } else {
-          alert('Avertissement ' + warnings + '/3 : ne quittez pas cette page pendant le QCM.');
-        }
-      }
-    });
-
-    // Anti-triche : quitter le plein écran
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        warnings++;
-        document.getElementById('warningCount').textContent = warnings;
-        alert('Avertissement : vous avez quitté le plein écran (' + warnings + '/3).');
-      }
-    });
   </script>
 </body>
 </html>
