@@ -8,18 +8,15 @@ const CONFIG = {
     bloquerSelection: true,      // Désactiver la sélection de texte
 };
  
-// ============================================================
+
 // ÉTAT GLOBAL
-// ============================================================
 let qcmEnCours = false;
 let tempsRestant = CONFIG.dureeQCM;
 let intervalTimer = null;
 let compteurAvertissements = 0;  // Compteur global (plein écran + onglet)
  
-// ============================================================
+
 // 1. DÉMARRAGE DU QCM
-// ============================================================
- 
 /**
  * Appelée au clic sur le bouton "Commencer le QCM".
  * Lance le plein écran et démarre tous les mécanismes.
@@ -39,10 +36,8 @@ if (btnStart) {
     });
 }
  
-// ============================================================
+
 // 2. PLEIN ÉCRAN
-// ============================================================
- 
 /**
  * Demande au navigateur de passer en plein écran.
  * Compatible Chrome, Firefox, Safari, Edge.
@@ -100,10 +95,8 @@ document.addEventListener('webkitfullscreenchange', function () {
     }
 });
  
-// ============================================================
+
 // 3. DÉTECTION CHANGEMENT D'ONGLET / MINIMISATION
-// ============================================================
- 
 /**
  * Utilise l'API Page Visibility pour détecter
  * quand l'utilisateur quitte l'onglet actif.
@@ -125,10 +118,8 @@ document.addEventListener('visibilitychange', function () {
     }
 });
  
-// ============================================================
+
 // 4. TIMER — COMPTE À REBOURS
-// ============================================================
- 
 /**
  * Lance le compte à rebours.
  * Soumet automatiquement le QCM quand le temps est écoulé.
@@ -184,10 +175,8 @@ function arreterTimer() {
     intervalTimer = null;
 }
  
-// ============================================================
+
 // 5. BLOCAGE ACTIONS (optionnel selon CONFIG)
-// ============================================================
- 
 // Désactiver le clic droit
 if (CONFIG.bloquerClicDroit) {
     document.addEventListener('contextmenu', function (e) {
@@ -229,10 +218,8 @@ if (CONFIG.bloquerSelection) {
     });
 }
  
-// ============================================================
+
 // 6. POPUP D'AVERTISSEMENT
-// ============================================================
- 
 /**
  * Affiche la popup d'avertissement avec un message.
  * @param {string}   message  - Texte affiché à l'utilisateur
@@ -268,10 +255,8 @@ function afficherAvertissement(message, callback) {
     }
 }
  
-// ============================================================
+
 // 7. INVALIDATION DE LA TENTATIVE
-// ============================================================
- 
 /**
  * Invalide la tentative en cours :
  *  - Arrête le timer
@@ -305,10 +290,8 @@ function invaliderTentative(raison) {
     });
 }
  
-// ============================================================
+
 // 8. SOUMISSION DU QCM
-// ============================================================
- 
 /**
  * Soumet le formulaire QCM (manuellement ou automatiquement).
  * À adapter selon votre structure HTML (id du formulaire).
