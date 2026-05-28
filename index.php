@@ -5,7 +5,15 @@
 // ============================================================
 
 session_start();
-$connecte = !empty($_SESSION['user_id']);
+
+// Si compte bloqué → déconnecter proprement
+if (!empty($_SESSION['bloque'])) {
+    session_destroy();
+    header('Location: login.php?erreur=compte_bloque');
+    exit;
+}
+
+$connecte  = !empty($_SESSION['user_id']);
 $est_admin = $connecte && $_SESSION['role'] === 'admin';
 ?>
 <!DOCTYPE html>
