@@ -109,9 +109,9 @@ $_SESSION['quiz_questions'] = $questions;
           <div class="quiz-question-block" id="question-<?= $num ?>" style="<?= $num > 1 ? 'display:none' : '' ?>">
 
             <div class="quiz-topbar">
-              <span class="tag tag-gold">Question <?= $num ?> sur 10</span>
+              <span class="tag tag-gold">Question <?= $num ?> sur <?= count($questions) ?></span>
             </div>
-            <div class="quiz-progress"><span style="width: <?= $num * 10 ?>%"></span></div>
+            <div class="quiz-progress"><span style="width: <?= round($num / count($questions) * 100) ?>%"></span></div>
 
             <h1 class="quiz-question"><?= htmlspecialchars($q['question']) ?></h1>
 
@@ -161,7 +161,7 @@ $_SESSION['quiz_questions'] = $questions;
   <script>
     // Navigation entre questions
     let current = 1;
-    const total = 10;
+    const total = <?= count($questions) ?>;
 
     function showQuestion(n) {
       document.querySelectorAll('.quiz-question-block').forEach(el => el.style.display = 'none');
@@ -198,7 +198,7 @@ $_SESSION['quiz_questions'] = $questions;
     });
 
     // Anti-triche : timer qui soumet automatiquement
-    let remaining = 10 * 60;
+    let remaining = <?= count($questions) ?> * 60;
     const timerEl = document.getElementById('timer');
     const timerInterval = setInterval(() => {
       remaining = Math.max(0, remaining - 1);

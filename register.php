@@ -10,7 +10,7 @@ require_once 'config.php';
 
 // Si déjà connecté → rediriger
 if (!empty($_SESSION['user_id'])) {
-    header('Location: quiz.php');
+    header('Location: index.php');
     exit;
 }
 
